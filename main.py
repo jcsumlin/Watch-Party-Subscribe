@@ -9,16 +9,11 @@ from loguru import logger
 import json
 from utils.dataIO import dataIO
 
-subbies = dataIO.load_json('data/watchparty/subscribed_users.json')
-config = dataIO.load_json("config.json")
-users_subscribed = [x['user'] for x in subbies]
+
 
 
 def initalize():
     global reddit
-
-    check_folders()
-    check_files()
 
 
     try:
@@ -71,6 +66,11 @@ def remove_user(user):
     pass
 
 if __name__ == "__main__":
+    check_folders()
+    check_files()
+    subbies = dataIO.load_json('data/watchparty/subscribed_users.json')
+    config = dataIO.load_json("config.json")
+    users_subscribed = [x['user'] for x in subbies]
     initalize()
     while True:
         for subreddit in config['subreddits']:
