@@ -72,6 +72,7 @@ if __name__ == "__main__":
     config = dataIO.load_json("config.json")
     users_subscribed = [x['user'] for x in subbies]
     initalize()
+    logger.success("===Started !subscribe bot!===")
     while True:
         for subreddit in config['subreddits']:
             sub = reddit.subreddit(subreddit)
