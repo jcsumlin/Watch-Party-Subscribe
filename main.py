@@ -58,9 +58,14 @@ def confirm_subscription(comment):
     return mail
 
 def add_user(user, subreddit):
-    subbies.append(
-        {"user": user.name, "subreddit": subreddit.title, "date_added": str(datetime.now())})
-    dataIO.save_json("data/watchparty/subscribed_users.json", subbies)
+    if user.name in users_subscribed:
+        logger.info(f"{user.name} is already subscribed")
+        return
+    else:
+        subbies.append(
+            {"user": user.name, "subreddit": subreddit.title, "date_added": str(datetime.now())})
+        dataIO.save_json("data/watchparty/subscribed_users.json", subbies)
+        users_subscribed.append(user.name)
 
 def remove_user(user):
     pass
